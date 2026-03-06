@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stingray.fit — Biomehanički fitnes coaching</title>
+  <meta name="description" content="Stingray.fit — biomehanički pristup koji rješava uzrok bola, ne simptome. Personaliziran program, 4K vodiči, mjerljivi rezultati." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Blue palette — matched to Stingray.fit */
+      --blue:        #3e9dc4;
+      --blue-dark:   #2d7a9a;
+      --blue-deeper: #1e5a75;
+      --blue-light:  #5ab5d3;
+      --blue-pale:   #eaf6fb;
+
+      /* Section backgrounds (alternating) */
+      --bg-blue:  #3e9dc4;   /* teal-blue sections */
+      --bg-white: #ffffff;   /* white sections */
+      --bg-navy:  #0e2a38;   /* footer / final CTA */
+
+      /* Cards */
+      --card-on-blue:  rgba(255, 255, 255, 0.13);
+      --card-on-white: #ffffff;
+      --card-border-on-blue:  rgba(255, 255, 255, 0.2);
+      --card-border-on-white: #d4eaf3;
+
+      /* Text on blue sections */
+      --text-blue:       #ffffff;
+      --text-blue-muted: rgba(255, 255, 255, 0.78);
+      --text-blue-dim:   rgba(255, 255, 255, 0.5);
+
+      /* Text on white sections */
+      --text-dark:      #0e2a38;
+      --text-dark-muted: #4a6472;
+      --text-dark-dim:   #8aa5b0;
+
+      --radius:    12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =====================
+       TYPOGRAPHY  (Momentous-style)
+       Headings: Plus Jakarta Sans (≈ PP Neue Montreal)
+       Body:     Inter (≈ Helvetica Now Pro Text)
+    ===================== */
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--text-dark);
+    }
+
+    /* H1 — display, mixed case, clean weight */
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    /* H2 — section headings */
+    h2 {
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    /* H3 — card/step headings */
+    h3 {
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+
+    p {
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+      color: var(--text-dark-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Section labels — Inter, spaced uppercase, small */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* =====================
+       LAYOUT UTILITIES
+    ===================== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section { padding: 100px 0; }
+
+    /* On blue sections, override text colors */
+    .on-blue p            { color: var(--text-blue-muted); }
+    .on-blue h1,
+    .on-blue h2,
+    .on-blue h3           { color: var(--text-blue); }
+
+    .section-label {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    /* label colour depends on section background */
+    .on-blue .section-label  { color: rgba(255,255,255,0.7); }
+    .on-white .section-label { color: var(--blue); }
+
+    .section-title  { margin-bottom: 16px; }
+
+    .section-intro {
+      font-size: 1.1rem;
+      max-width: 620px;
+      margin-bottom: 56px;
+    }
+
+    /* =====================
+       BUTTONS
+    ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    /* White button (used on blue sections) */
+    .btn-primary {
+      background: #ffffff;
+      color: var(--blue-dark);
+    }
+    .btn-primary:hover {
+      background: var(--blue-pale);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* Blue button (used on white sections) */
+    .btn-blue {
+      background: var(--blue);
+      color: #ffffff;
+    }
+    .btn-blue:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(62, 157, 196, 0.35);
+    }
+    .btn-blue:active { transform: translateY(0); }
+
+    .btn-lg {
+      padding: 20px 44px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+    }
+
+    .microcopy {
+      display: block;
+      font-size: 0.8rem;
+      margin-top: 12px;
+      letter-spacing: 0.02em;
+    }
+    .on-blue  .microcopy { color: var(--text-blue-dim); }
+    .on-white .microcopy { color: var(--text-dark-dim); }
+
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo img {
+      height: 38px;
+      width: auto;
+      display: block;
+      /* Tint to match --blue: #3e9dc4 */
+      filter: brightness(0) saturate(100%) invert(62%) sepia(40%) saturate(600%) hue-rotate(163deg) brightness(100%);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 22px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+
+    /* =====================
+       HERO  (split: dark left + photo right)
+    ===================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      background: #0a0a0a;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    /* ---- photo (right side, desktop) ---- */
+    .hero-bg {
+      position: absolute;
+      top: 0; right: 0;
+      width: 60%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* ---- gradient overlays ---- */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      /* Left-to-right: solid dark → transparent blend */
+      background:
+        linear-gradient(
+          to right,
+          #0a0a0a 28%,
+          rgba(10,10,10,0.93) 42%,
+          rgba(10,10,10,0.55) 60%,
+          rgba(10,10,10,0.18) 78%,
+          transparent 100%
+        ),
+        /* Moody dark veil over the whole image */
+        linear-gradient(
+          160deg,
+          rgba(0,0,0,0.25) 0%,
+          rgba(0,0,0,0.45) 100%
+        );
+    }
+
+    /* ---- text content (left side) ---- */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .hero-text {
+      max-width: 540px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 28px;
+      letter-spacing: 0.05em;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--blue-light);
+      border-radius: 50%;
+    }
+
+    .hero-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      font-weight: 400;
+      max-width: 480px;
+      margin-bottom: 44px;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.7;
+    }
+
+    /* ---- mobile hero ---- */
+    @media (max-width: 768px) {
+      /* Exact viewport height — no overflow */
+      #hero {
+        height: 100svh;
+        min-height: 0;
+      }
+
+      /* Image fills the whole section */
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-img { object-position: center 15%; }
+
+      /* Strong bottom-to-top scrim for text legibility */
+      .hero-overlay {
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(10,10,10,0.1)  0%,
+            rgba(10,10,10,0.2)  40%,
+            rgba(10,10,10,0.75) 68%,
+            rgba(10,10,10,0.97) 85%,
+            #0a0a0a             100%
+          );
+      }
+
+      /* Stack vertically, push text to bottom */
+      .hero-inner {
+        height: 100%;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-top: 0;
+        padding-bottom: 36px;
+        margin-top: 0;
+        align-items: unset;
+      }
+
+      .hero-text  { max-width: 100%; }
+      .hero-eyebrow { display: none; }
+
+      /* Subheadline hidden on mobile — H1 + CTA is enough */
+      .hero-sub   { display: none; }
+
+      .hero-headline {
+        font-size: clamp(1.65rem, 7vw, 2.1rem);
+        line-height: 1.05;
+        margin-bottom: 18px;
+      }
+
+      .hero-text .btn-lg {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 1rem;
+      }
+
+      .hero-text .microcopy {
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+
+    /* =====================
+       SECTION 2: CALCULATOR  (white bg)
+    ===================== */
+    #kalkulator { background: var(--bg-white); }
+
+    .calc-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .calc-sliders {
+      background: var(--blue-pale);
+      border: 1px solid var(--card-border-on-white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .slider-group        { margin-bottom: 28px; }
+    .slider-group:last-child { margin-bottom: 0; }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .slider-value {
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: #c8dfe8;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(62,157,196,0.2);
+      transition: box-shadow 0.2s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 0 6px rgba(62,157,196,0.3);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 0 4px rgba(62,157,196,0.2);
+    }
+
+    .calc-results {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .result-card {
+      background: var(--card-on-white);
+      border: 1px solid var(--card-border-on-white);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.3s ease;
+    }
+    .result-card:hover { border-color: var(--blue-light); }
+
+    .result-card.highlight {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      border-color: var(--blue);
+    }
+    .result-card.highlight .result-label  { color: rgba(255,255,255,0.7); }
+    .result-card.highlight .result-number { color: #fff; }
+
+    .result-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dark-dim);
+      margin-bottom: 8px;
+    }
+
+    .result-number {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .result-number.big { font-size: clamp(2.2rem, 4vw, 3rem); }
+
+    .calc-tagline {
+      font-size: 1.1rem;
+      color: var(--text-dark-muted);
+      text-align: center;
+      margin: 40px 0 28px;
+      font-style: italic;
+    }
+    .calc-tagline strong { color: var(--text-dark); }
+
+    .calc-cta { text-align: center; }
+
+    /* =====================
+       SECTION 3: THE SHIFT  (blue bg)
+    ===================== */
+    #shift { background: var(--bg-blue); }
+
+    .comparison-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .col-header {
+      padding: 24px 32px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .col-header.traditional {
+      background: rgba(0,0,0,0.12);
+      color: rgba(255,255,255,0.55);
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .col-header.stingray {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+    }
+
+    .comparison-row { display: contents; }
+
+    .comparison-row .cell {
+      padding: 20px 32px;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .comparison-row .cell.traditional {
+      background: rgba(0,0,0,0.08);
+      color: rgba(255,255,255,0.65);
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .comparison-row .cell.stingray {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .cell-icon {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .cell-icon.x     { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); }
+    .cell-icon.check { background: rgba(255,255,255,0.25); color: #fff; }
+
+    /* =====================
+       SECTION 4: TESTIMONIALS  (white bg)
+    ===================== */
+    #testimonijali { background: var(--bg-white); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--blue-pale);
+      border: 1px solid var(--card-border-on-white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover {
+      border-color: var(--blue-light);
+      background: #ddf0f8;
+      transform: translateY(-4px);
+    }
+
+    .quote-mark {
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--blue);
+      font-family: Georgia, serif;
+      margin-bottom: 16px;
+      display: block;
+      opacity: 0.6;
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      color: var(--text-dark);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .testimonial-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+      background: rgba(62,157,196,0.12);
+      border: 1px solid rgba(62,157,196,0.3);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+
+    /* =====================
+       SECTION 5: HOW IT WORKS  (blue bg)
+    ===================== */
+    #kako-radi { background: var(--bg-blue); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .step-card { position: relative; }
+
+    .step-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #fff;
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+
+    .steps-note {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .steps-note-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .steps-note p    { color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+
+    .how-cta { text-align: center; }
+
+    /* =====================
+       SECTION 6: WHAT'S INCLUDED  (white bg)
+    ===================== */
+    #sta-dobijas { background: var(--bg-white); }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .included-card {
+      background: var(--blue-pale);
+      border: 1px solid var(--card-border-on-white);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .included-card:hover {
+      border-color: var(--blue);
+      background: #ddf0f8;
+      transform: translateY(-4px);
+    }
+
+    .included-icon  { font-size: 1.8rem; display: block; margin-bottom: 14px; }
+    .included-title { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
+
+    /* =====================
+       SECTION 7: FAQ  (light bg)
+    ===================== */
+    #faq {
+      background: #f2f8fb;
+      text-align: center;
+    }
+
+    #faq .section-label {
+      color: var(--blue);
+      font-size: 0.75rem;
+    }
+
+    #faq .section-title {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      margin-bottom: 56px;
+      line-height: 1.05;
+      text-transform: none;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: left;
+      border-top: 1px solid #ccdde6;
+    }
+
+    .faq-item { border-bottom: 1px solid #ccdde6; }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 28px 0;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--blue); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      color: var(--blue);
+      transition: transform 0.3s ease;
+      line-height: 1;
+      font-weight: 300;
+    }
+    .faq-item.open .faq-icon { transform: rotate(90deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding-bottom: 28px;
+      color: var(--text-dark-muted);
+      line-height: 1.8;
+      font-size: 0.97rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    /* =====================
+       SECTION 8: FINAL CTA  (deep blue/navy)
+    ===================== */
+    #final-cta {
+      background: linear-gradient(135deg, var(--bg-navy) 0%, var(--blue-dark) 50%, var(--blue) 100%);
+      text-align: center;
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .final-headline {
+      max-width: 680px;
+      margin: 0 auto 20px;
+      color: #fff;
+    }
+    .final-sub  { font-size: 1.1rem; color: rgba(255,255,255,0.78); margin-bottom: 44px; }
+    .final-micro { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 16px; letter-spacing: 0.05em; }
+
+    /* =====================
+       FOOTER  (navy)
+    ===================== */
+    footer {
+      background: var(--bg-navy);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 32px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+    }
+    .footer-logo-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .footer-logo-text span { color: var(--blue-light); }
+
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    .footer-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-ig:hover { color: #fff; }
+    .footer-ig svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* =====================
+       DIVIDER
+    ===================== */
+    .divider {
+      width: 48px; height: 3px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .on-blue  .divider { background: rgba(255,255,255,0.5); }
+    .on-white .divider { background: var(--blue); }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .calc-wrapper        { grid-template-columns: 1fr; }
+      .testimonials-grid   { grid-template-columns: 1fr; }
+      .steps-grid          { grid-template-columns: 1fr; }
+      .included-grid       { grid-template-columns: repeat(2, 1fr); }
+      .included-grid .included-card:last-child { grid-column: 1 / -1; }
+      .comparison-table    { font-size: 0.9rem; }
+      .col-header, .comparison-row .cell { padding: 16px 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .section        { padding: 72px 0; }
+      #hero           { padding: 120px 0 72px; }
+      .calc-sliders   { padding: 24px; }
+      .included-grid  { grid-template-columns: 1fr 1fr; }
+      .steps-note     { flex-direction: column; text-align: center; }
+      .footer-inner   { flex-direction: column; align-items: flex-start; gap: 12px; }
+      nav .nav-cta    { font-size: 0.8rem; padding: 8px 16px; }
+    }
+
+    /* =====================
+       ANIMATION
+    ===================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up          { animation: fadeUp 0.6s ease forwards; }
+    .fade-up-delay-1  { animation-delay: 0.1s; opacity: 0; }
+    .fade-up-delay-2  { animation-delay: 0.2s; opacity: 0; }
+    .fade-up-delay-3  { animation-delay: 0.3s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- =====================
+       NAV
+  ===================== -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="Stingray.fit" />
+      </a>
+      <a href="#final-cta" class="nav-cta">Zakaži procjenu &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- =====================
+       1. HERO
+  ===================== -->
+  <section id="hero">
+    <!-- Photo — right side -->
+    <div class="hero-bg">
+      <img src="hero.jpg" alt="Stingray.fit — biomehanički trening" class="hero-img" />
+    </div>
+    <!-- Gradient blend overlays -->
+    <div class="hero-overlay"></div>
+    <!-- Text — left side -->
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow fade-up">Biomehanički fitnes coaching</div>
+        <h1 class="hero-headline fade-up fade-up-delay-1">
+          Tvoja bol nije problem. Način na koji se krećeš jeste.
+        </h1>
+        <p class="hero-sub fade-up fade-up-delay-2">
+          Prosječna osoba sa hroničnim bolom potroši 3,000+ KM godišnje na terapije koje liječe simptome &mdash; ne uzrok.
+        </p>
+        <div class="fade-up fade-up-delay-3">
+          <a href="#final-cta" class="btn btn-primary btn-lg">Saznaj šta zaista uzrokuje tvoj bol &rarr;</a>
+          <span class="microcopy" style="color:rgba(255,255,255,0.45)">Besplatna procjena. 5 minuta.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       2. PROBLEM + CALCULATOR
+  ===================== -->
+  <section id="kalkulator" class="section on-white">
+    <div class="container">
+      <span class="section-label">Troškovi hroničnog bola</span>
+      <h2 class="section-title">Sve si probao. Bol je i dalje tu.</h2>
+      <div class="divider"></div>
+      <p class="section-intro">
+        Fizioterapija. Lijekovi. Odmor. I opet isto. Problem nije što nisi dovoljno probao &mdash; problem je što sve to liječi simptome, ne uzrok.
+      </p>
+
+      <div class="calc-wrapper">
+        <!-- Sliders -->
+        <div class="calc-sliders">
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Koliko godina imaš hronični bol?</span>
+              <span class="slider-value" id="val-years">3 god.</span>
+            </div>
+            <input type="range" id="slider-years" min="1" max="20" value="3" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Posjeta fizioterapeutu / ljekaru godišnje</span>
+              <span class="slider-value" id="val-visits">12</span>
+            </div>
+            <input type="range" id="slider-visits" min="0" max="50" value="12" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Prosječna cijena jednog tretmana (KM)</span>
+              <span class="slider-value" id="val-cost">45 KM</span>
+            </div>
+            <input type="range" id="slider-cost" min="10" max="100" value="45" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Lijekovi / suplementi mjesečno (KM)</span>
+              <span class="slider-value" id="val-meds">50 KM</span>
+            </div>
+            <input type="range" id="slider-meds" min="0" max="200" value="50" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Dana mjesečno — bol utiče na tvoj rad</span>
+              <span class="slider-value" id="val-days">5 dana</span>
+            </div>
+            <input type="range" id="slider-days" min="0" max="20" value="5" />
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="calc-results">
+          <div class="result-card">
+            <div class="result-label">Potrošeno do sad</div>
+            <div class="result-number" id="res-total">0 KM</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Godišnji trošak bola</div>
+            <div class="result-number" id="res-annual">0 KM</div>
+          </div>
+          <div class="result-card highlight">
+            <div class="result-label">Za 5 godina, ako nastaviš ovako</div>
+            <div class="result-number big" id="res-five">0 KM</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="calc-tagline"><strong>I nakon svega toga &mdash; bol je i dalje tu.</strong></p>
+      <div class="calc-cta">
+        <a href="#final-cta" class="btn btn-blue">Zakaži besplatnu procjenu &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       3. THE SHIFT
+  ===================== -->
+  <section id="shift" class="section on-blue">
+    <div class="container">
+      <span class="section-label">Drugačiji pristup</span>
+      <h2 class="section-title">Problem nije bol.<br>Problem je kako se krećeš.</h2>
+      <div class="divider"></div>
+
+      <div class="comparison-table">
+        <div class="col-header traditional">Tradicionalni pristup</div>
+        <div class="col-header stingray">Stingray pristup</div>
+
+        <div class="comparison-row">
+          <div class="cell traditional">
+            <span class="cell-icon x">&times;</span>
+            Liječi gdje boli
+          </div>
+          <div class="cell stingray">
+            <span class="cell-icon check">&#10003;</span>
+            Otkriva zašto boli
+          </div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="cell traditional">
+            <span class="cell-icon x">&times;</span>
+            Privremeno olakšanje
+          </div>
+          <div class="cell stingray">
+            <span class="cell-icon check">&#10003;</span>
+            Trajna promjena
+          </div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="cell traditional">
+            <span class="cell-icon x">&times;</span>
+            Simptomi se vraćaju
+          </div>
+          <div class="cell stingray">
+            <span class="cell-icon check">&#10003;</span>
+            Korijeni se rješavaju
+          </div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="cell traditional">
+            <span class="cell-icon x">&times;</span>
+            Ovisnost o tretmanima
+          </div>
+          <div class="cell stingray">
+            <span class="cell-icon check">&#10003;</span>
+            Samostalnost u kretanju
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       4. TESTIMONIALS
+  ===================== -->
+  <section id="testimonijali" class="section on-white">
+    <div class="container">
+      <span class="section-label">Pravi rezultati</span>
+      <h2 class="section-title">Pogledaj rezultate</h2>
+      <div class="divider"></div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p class="testimonial-text">Za 2 mjeseca &mdash; DUGOGODIŠNJIH bolova u koljenu i leđima NEMA.</p>
+          <div class="testimonial-author">Nedim</div>
+          <div style="margin-top:10px">
+            <span class="testimonial-result">&#10003; Višegodišnji bol riješen za 2 mjeseca</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p class="testimonial-text">Nakon 7 dana bolovi u vratu i ramenima su nestali.</p>
+          <div class="testimonial-author">Stefani</div>
+          <div style="margin-top:10px">
+            <span class="testimonial-result">&#10003; Bol eliminiran za 7 dana</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p class="testimonial-text">Počeo depresivan od bolova. Sada bez ikakvih bolova.</p>
+          <div class="testimonial-author">Halid</div>
+          <div style="margin-top:10px">
+            <span class="testimonial-result">&#10003; Potpuni oporavak</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       5. HOW IT WORKS
+  ===================== -->
+  <section id="kako-radi" class="section on-blue">
+    <div class="container">
+      <span class="section-label">Proces</span>
+      <h2 class="section-title">Kako počinje promjena</h2>
+      <div class="divider"></div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-title">Popuni upitnik i snimi testove</div>
+          <p class="step-desc">Analiziramo tvoju posturu i biomehaniku. Otkrivamo tačan uzrok bola &mdash; ne samo gdje boli, nego zašto.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-title">Dobiješ personaliziran program</div>
+          <p class="step-desc">4K video vodiči, sedmični plan, stalna podrška. Sve prilagođeno tebi i tvom tijelu.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-title">Pratiš napredak sa nama</div>
+          <p class="step-desc">Mjesečni pozivi i testovi, mjerljivi rezultati. Vidiš promjenu &mdash; brojevima, ne nadom.</p>
+        </div>
+      </div>
+
+      <div class="steps-note">
+        <span class="steps-note-icon">&#127759;</span>
+        <p>Teretana nije nužna. Lokacija nije bitna. <strong style="color:#fff">Radiš gdje god si.</strong></p>
+      </div>
+
+      <div class="how-cta">
+        <a href="#final-cta" class="btn btn-primary">Zakaži besplatnu procjenu &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       6. WHAT'S INCLUDED
+  ===================== -->
+  <section id="sta-dobijas" class="section on-white">
+    <div class="container">
+      <span class="section-label">Paket</span>
+      <h2 class="section-title">Šta dobijaš</h2>
+      <div class="divider"></div>
+
+      <div class="included-grid">
+        <div class="included-card">
+          <span class="included-icon">&#129516;</span>
+          <div class="included-title">Personaliziran program kretanja</div>
+        </div>
+        <div class="included-card">
+          <span class="included-icon">&#127910;</span>
+          <div class="included-title">4K video vodiči za svaku vježbu</div>
+        </div>
+        <div class="included-card">
+          <span class="included-icon">&#128197;</span>
+          <div class="included-title">Sedmični plan i praćenje</div>
+        </div>
+        <div class="included-card">
+          <span class="included-icon">&#128172;</span>
+          <div class="included-title">Direktna podrška trenera</div>
+        </div>
+        <div class="included-card">
+          <span class="included-icon">&#128200;</span>
+          <div class="included-title">Mjerljivi rezultati svaki mjesec</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       7. FAQ
+  ===================== -->
+  <section id="faq" class="section">
+    <div class="container">
+      <span class="section-label">Pitanja</span>
+      <h2 class="section-title">Imate pitanja,<br>mi imamo odgovore.</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Da li trebam teretanu?
+            <span class="faq-icon">&#8250;</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Ne. Program je dizajniran da radiš kod kuće, u parku, na putovanju &mdash; bilo gdje. Sve što ti treba je tvoje tijelo i volja za promjenom.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Koliko brzo mogu očekivati rezultate?
+            <span class="faq-icon">&#8250;</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Većina klijenata osjeća značajno poboljšanje u prvih 30 dana. Neki, poput Stefanija, osjete razliku za samo 7 dana.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Šta ako imam ozbiljnu povredu?
+            <span class="faq-icon">&#8250;</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Upravo za takve slučajeve je Stingray stvoren. Prilagođavamo program tvom stanju, pažljivo i postepeno, sa fokusom na siguran oporavak.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Koliko košta program?
+            <span class="faq-icon">&#8250;</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Kada uporediš sa godišnjim troškom fizioterapije i lijekova &mdash; ovo je investicija koja se isplati. Zakaži procjenu i dobit ćeš sve detalje o opcijama i cijenama.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       8. FINAL CTA
+  ===================== -->
+  <section id="final-cta">
+    <div class="container">
+      <h2 class="final-headline">Koliko još godina planiraš živjeti sa bolom?</h2>
+      <p class="final-sub">Jedan poziv. 15 minuta. Bez obaveze.</p>
+      <a href="#" class="btn btn-primary btn-lg">Zakaži besplatnu procjenu &rarr;</a>
+      <p class="final-micro">Besplatno &bull; Online &bull; 15 minuta</p>
+    </div>
+  </section>
+
+  <!-- =====================
+       FOOTER
+  ===================== -->
+  <footer>
+    <div class="container footer-inner">
+      <a href="#" class="footer-logo">
+        <img src="logo.png" alt="Stingray.fit" />
+        <span class="footer-logo-text">Stingray<span>.fit</span></span>
+      </a>
+      <span class="footer-copy">&copy; 2025 Stingray.fit. Sva prava zadržana.</span>
+      <a href="https://instagram.com/stingray.fit" target="_blank" rel="noopener" class="footer-ig">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        @stingray.fit
+      </a>
+    </div>
+  </footer>
+
+  <!-- =====================
+       JAVASCRIPT
+  ===================== -->
+  <script>
+    // ---- CALCULATOR ----
+    const sliders = {
+      years:  document.getElementById('slider-years'),
+      visits: document.getElementById('slider-visits'),
+      cost:   document.getElementById('slider-cost'),
+      meds:   document.getElementById('slider-meds'),
+      days:   document.getElementById('slider-days'),
+    };
+
+    const displays = {
+      years:  document.getElementById('val-years'),
+      visits: document.getElementById('val-visits'),
+      cost:   document.getElementById('val-cost'),
+      meds:   document.getElementById('val-meds'),
+      days:   document.getElementById('val-days'),
+    };
+
+    const results = {
+      total:  document.getElementById('res-total'),
+      annual: document.getElementById('res-annual'),
+      five:   document.getElementById('res-five'),
+    };
+
+    function fmt(n) {
+      return n.toLocaleString('bs-BA') + ' KM';
+    }
+
+    function calcUpdate() {
+      const years  = +sliders.years.value;
+      const visits = +sliders.visits.value;
+      const cost   = +sliders.cost.value;
+      const meds   = +sliders.meds.value;
+      const days   = +sliders.days.value;
+
+      displays.years.textContent  = years + ' god.';
+      displays.visits.textContent = visits;
+      displays.cost.textContent   = cost + ' KM';
+      displays.meds.textContent   = meds + ' KM';
+      displays.days.textContent   = days + ' dana';
+
+      // annual treatment cost + annual meds
+      const annualTreatment = (visits * cost) + (meds * 12);
+      // productivity cost: days * 50 KM per day
+      const annualTotal = annualTreatment + (days * 50);
+      // total spent so far
+      const totalSpent = years * annualTreatment;
+
+      // Animated counter update
+      animateValue(results.total,  totalSpent);
+      animateValue(results.annual, annualTotal);
+      animateValue(results.five,   annualTotal * 5);
+    }
+
+    function animateValue(el, target) {
+      const current = parseInt(el.dataset.current || '0', 10);
+      if (current === target) return;
+      el.dataset.current = target;
+
+      const duration = 400;
+      const start = performance.now();
+      const from = current;
+
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(from + (target - from) * eased);
+        el.textContent = fmt(value);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    Object.values(sliders).forEach(s => {
+      s.addEventListener('input', calcUpdate);
+    });
+
+    // Track range fill color
+    function updateSliderFill(slider) {
+      const min = +slider.min;
+      const max = +slider.max;
+      const val = +slider.value;
+      const pct = ((val - min) / (max - min)) * 100;
+      slider.style.background = `linear-gradient(to right, #3e9dc4 ${pct}%, #c8dfe8 ${pct}%)`;
+    }
+
+    Object.values(sliders).forEach(s => {
+      updateSliderFill(s);
+      s.addEventListener('input', () => updateSliderFill(s));
+    });
+
+    calcUpdate();
+
+    // ---- FAQ ACCORDION ----
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+
+      // Open clicked if it was closed
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>
