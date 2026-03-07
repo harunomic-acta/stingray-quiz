@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stingray.fit — Biomehanički fitnes coaching</title>
-  <meta name="description" content="Stingray.fit — biomehanički pristup koji rješava uzrok bola, ne simptome. Personaliziran program, 4K vodiči, mjerljivi rezultati." />
+  <title>Stingray.fit — Dijagnoza kretanja</title>
+  <meta name="description" content="Stingray.fit — otkrij zašto se tvoje tijelo ne kreće kako treba. 5 pitanja, personaliziran profil kretanja." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -19,30 +19,25 @@
     }
 
     :root {
-      /* Blue palette — matched to Stingray.fit */
       --blue:        #3e9dc4;
       --blue-dark:   #2d7a9a;
       --blue-deeper: #1e5a75;
       --blue-light:  #5ab5d3;
       --blue-pale:   #eaf6fb;
 
-      /* Section backgrounds (alternating) */
-      --bg-blue:  #3e9dc4;   /* teal-blue sections */
-      --bg-white: #ffffff;   /* white sections */
-      --bg-navy:  #0e2a38;   /* footer / final CTA */
+      --bg-blue:  #3e9dc4;
+      --bg-white: #ffffff;
+      --bg-navy:  #0e2a38;
 
-      /* Cards */
       --card-on-blue:  rgba(255, 255, 255, 0.13);
       --card-on-white: #ffffff;
       --card-border-on-blue:  rgba(255, 255, 255, 0.2);
       --card-border-on-white: #d4eaf3;
 
-      /* Text on blue sections */
       --text-blue:       #ffffff;
       --text-blue-muted: rgba(255, 255, 255, 0.78);
       --text-blue-dim:   rgba(255, 255, 255, 0.5);
 
-      /* Text on white sections */
       --text-dark:      #0e2a38;
       --text-dark-muted: #4a6472;
       --text-dark-dim:   #8aa5b0;
@@ -62,11 +57,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* =====================
-       TYPOGRAPHY  (Momentous-style)
-       Headings: Plus Jakarta Sans (≈ PP Neue Montreal)
-       Body:     Inter (≈ Helvetica Now Pro Text)
-    ===================== */
     h1, h2, h3, h4 {
       font-family: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
       line-height: 1.1;
@@ -74,7 +64,6 @@
       color: var(--text-dark);
     }
 
-    /* H1 — display, mixed case, clean weight */
     h1 {
       font-size: clamp(2.2rem, 5vw, 3.8rem);
       font-weight: 700;
@@ -82,14 +71,12 @@
       letter-spacing: -0.03em;
     }
 
-    /* H2 — section headings */
     h2 {
       font-size: clamp(1.7rem, 3.2vw, 2.6rem);
       font-weight: 700;
       letter-spacing: -0.025em;
     }
 
-    /* H3 — card/step headings */
     h3 {
       font-size: clamp(1rem, 1.8vw, 1.25rem);
       font-weight: 600;
@@ -103,18 +90,16 @@
       line-height: 1.7;
     }
 
-    /* Section labels — Inter, spaced uppercase, small */
     .section-label {
       font-family: 'Inter', sans-serif;
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 16px;
     }
 
-    /* =====================
-       LAYOUT UTILITIES
-    ===================== */
     .container {
       max-width: 1080px;
       margin: 0 auto;
@@ -123,18 +108,11 @@
 
     .section { padding: 100px 0; }
 
-    /* On blue sections, override text colors */
     .on-blue p            { color: var(--text-blue-muted); }
     .on-blue h1,
     .on-blue h2,
     .on-blue h3           { color: var(--text-blue); }
 
-    .section-label {
-      display: inline-block;
-      margin-bottom: 16px;
-    }
-
-    /* label colour depends on section background */
     .on-blue .section-label  { color: rgba(255,255,255,0.7); }
     .on-white .section-label { color: var(--blue); }
 
@@ -165,7 +143,6 @@
       transition: all 0.2s ease;
     }
 
-    /* White button (used on blue sections) */
     .btn-primary {
       background: #ffffff;
       color: var(--blue-dark);
@@ -177,7 +154,6 @@
     }
     .btn-primary:active { transform: translateY(0); }
 
-    /* Blue button (used on white sections) */
     .btn-blue {
       background: var(--blue);
       color: #ffffff;
@@ -234,7 +210,6 @@
       height: 38px;
       width: auto;
       display: block;
-      /* Tint to match --blue: #3e9dc4 */
       filter: brightness(0) saturate(100%) invert(62%) sepia(40%) saturate(600%) hue-rotate(163deg) brightness(100%);
     }
 
@@ -253,7 +228,7 @@
     .nav-cta:hover { background: var(--blue-dark); }
 
     /* =====================
-       HERO  (split: dark left + photo right)
+       HERO
     ===================== */
     #hero {
       position: relative;
@@ -265,7 +240,6 @@
       padding: 0;
     }
 
-    /* ---- photo (right side, desktop) ---- */
     .hero-bg {
       position: absolute;
       top: 0; right: 0;
@@ -282,12 +256,10 @@
       display: block;
     }
 
-    /* ---- gradient overlays ---- */
     .hero-overlay {
       position: absolute;
       inset: 0;
       z-index: 1;
-      /* Left-to-right: solid dark → transparent blend */
       background:
         linear-gradient(
           to right,
@@ -297,7 +269,6 @@
           rgba(10,10,10,0.18) 78%,
           transparent 100%
         ),
-        /* Moody dark veil over the whole image */
         linear-gradient(
           160deg,
           rgba(0,0,0,0.25) 0%,
@@ -305,7 +276,6 @@
         );
     }
 
-    /* ---- text content (left side) ---- */
     .hero-inner {
       position: relative;
       z-index: 2;
@@ -317,9 +287,7 @@
       padding-bottom: 80px;
     }
 
-    .hero-text {
-      max-width: 540px;
-    }
+    .hero-text { max-width: 540px; }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -362,25 +330,18 @@
       line-height: 1.7;
     }
 
-    /* ---- mobile hero ---- */
     @media (max-width: 768px) {
-      /* Exact viewport height — no overflow */
       #hero {
         height: 100svh;
         min-height: 0;
       }
-
-      /* Image fills the whole section */
       .hero-bg {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
       }
-
       .hero-img { object-position: center 15%; }
-
-      /* Strong bottom-to-top scrim for text legibility */
       .hero-overlay {
         background:
           linear-gradient(
@@ -392,8 +353,6 @@
             #0a0a0a             100%
           );
       }
-
-      /* Stack vertically, push text to bottom */
       .hero-inner {
         height: 100%;
         min-height: 0;
@@ -405,26 +364,20 @@
         margin-top: 0;
         align-items: unset;
       }
-
       .hero-text  { max-width: 100%; }
       .hero-eyebrow { display: none; }
-
-      /* Subheadline hidden on mobile — H1 + CTA is enough */
       .hero-sub   { display: none; }
-
       .hero-headline {
         font-size: clamp(1.65rem, 7vw, 2.1rem);
         line-height: 1.05;
         margin-bottom: 18px;
       }
-
       .hero-text .btn-lg {
         width: 100%;
         justify-content: center;
         padding: 16px 24px;
         font-size: 1rem;
       }
-
       .hero-text .microcopy {
         text-align: center;
         margin-top: 10px;
@@ -432,130 +385,7 @@
     }
 
     /* =====================
-       SECTION 2: CALCULATOR  (white bg)
-    ===================== */
-    #kalkulator { background: var(--bg-white); }
-
-    .calc-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    .calc-sliders {
-      background: var(--blue-pale);
-      border: 1px solid var(--card-border-on-white);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-    }
-
-    .slider-group        { margin-bottom: 28px; }
-    .slider-group:last-child { margin-bottom: 0; }
-
-    .slider-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 10px;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-
-    .slider-value {
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 1rem;
-      font-variant-numeric: tabular-nums;
-    }
-
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 4px;
-      background: #c8dfe8;
-      border-radius: 2px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: var(--blue);
-      cursor: pointer;
-      box-shadow: 0 0 0 4px rgba(62,157,196,0.2);
-      transition: box-shadow 0.2s;
-    }
-    input[type="range"]::-webkit-slider-thumb:hover {
-      box-shadow: 0 0 0 6px rgba(62,157,196,0.3);
-    }
-    input[type="range"]::-moz-range-thumb {
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: var(--blue);
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 0 0 4px rgba(62,157,196,0.2);
-    }
-
-    .calc-results {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .result-card {
-      background: var(--card-on-white);
-      border: 1px solid var(--card-border-on-white);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: border-color 0.3s ease;
-    }
-    .result-card:hover { border-color: var(--blue-light); }
-
-    .result-card.highlight {
-      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
-      border-color: var(--blue);
-    }
-    .result-card.highlight .result-label  { color: rgba(255,255,255,0.7); }
-    .result-card.highlight .result-number { color: #fff; }
-
-    .result-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-dark-dim);
-      margin-bottom: 8px;
-    }
-
-    .result-number {
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      color: var(--blue);
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-    .result-number.big { font-size: clamp(2.2rem, 4vw, 3rem); }
-
-    .calc-tagline {
-      font-size: 1.1rem;
-      color: var(--text-dark-muted);
-      text-align: center;
-      margin: 40px 0 28px;
-      font-style: italic;
-    }
-    .calc-tagline strong { color: var(--text-dark); }
-
-    .calc-cta { text-align: center; }
-
-    /* =====================
-       SECTION 3: THE SHIFT  (blue bg)
+       SECTION 3: THE SHIFT
     ===================== */
     #shift { background: var(--bg-blue); }
 
@@ -620,7 +450,7 @@
     .cell-icon.check { background: rgba(255,255,255,0.25); color: #fff; }
 
     /* =====================
-       SECTION 4: TESTIMONIALS  (white bg)
+       SECTION 4: TESTIMONIALS
     ===================== */
     #testimonijali { background: var(--bg-white); }
 
@@ -683,7 +513,7 @@
     }
 
     /* =====================
-       SECTION 5: HOW IT WORKS  (blue bg)
+       SECTION 5: HOW IT WORKS
     ===================== */
     #kako-radi { background: var(--bg-blue); }
 
@@ -735,7 +565,7 @@
     .how-cta { text-align: center; }
 
     /* =====================
-       SECTION 6: WHAT'S INCLUDED  (white bg)
+       SECTION 6: WHAT'S INCLUDED
     ===================== */
     #sta-dobijas { background: var(--bg-white); }
 
@@ -763,7 +593,7 @@
     .included-title { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
 
     /* =====================
-       SECTION 7: FAQ  (light bg)
+       SECTION 7: FAQ
     ===================== */
     #faq {
       background: #f2f8fb;
@@ -782,7 +612,6 @@
       color: var(--text-dark);
       margin-bottom: 56px;
       line-height: 1.05;
-      text-transform: none;
     }
 
     .faq-list {
@@ -841,7 +670,7 @@
     .faq-item.open .faq-answer { max-height: 200px; }
 
     /* =====================
-       SECTION 8: FINAL CTA  (deep blue/navy)
+       SECTION 8: FINAL CTA
     ===================== */
     #final-cta {
       background: linear-gradient(135deg, var(--bg-navy) 0%, var(--blue-dark) 50%, var(--blue) 100%);
@@ -869,7 +698,7 @@
     .final-micro { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 16px; letter-spacing: 0.05em; }
 
     /* =====================
-       FOOTER  (navy)
+       FOOTER
     ===================== */
     footer {
       background: var(--bg-navy);
@@ -934,10 +763,9 @@
     .on-white .divider { background: var(--blue); }
 
     /* =====================
-       RESPONSIVE
+       RESPONSIVE (global)
     ===================== */
     @media (max-width: 900px) {
-      .calc-wrapper        { grid-template-columns: 1fr; }
       .testimonials-grid   { grid-template-columns: 1fr; }
       .steps-grid          { grid-template-columns: 1fr; }
       .included-grid       { grid-template-columns: repeat(2, 1fr); }
@@ -948,10 +776,6 @@
 
     @media (max-width: 600px) {
       .section        { padding: 72px 0; }
-      #hero           { padding: 120px 0 72px; }
-      .calc-sliders   { padding: 24px; }
-      .included-grid  { grid-template-columns: 1fr 1fr; }
-      .steps-note     { flex-direction: column; text-align: center; }
       .footer-inner   { flex-direction: column; align-items: flex-start; gap: 12px; }
       nav .nav-cta    { font-size: 0.8rem; padding: 8px 16px; }
     }
@@ -967,6 +791,492 @@
     .fade-up-delay-1  { animation-delay: 0.1s; opacity: 0; }
     .fade-up-delay-2  { animation-delay: 0.2s; opacity: 0; }
     .fade-up-delay-3  { animation-delay: 0.3s; opacity: 0; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =====================
+       QUIZ
+    ===================== */
+    #quiz { background: #fff; }
+
+    .quiz-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Progress bar */
+    .quiz-progress-area {
+      margin-bottom: 40px;
+    }
+
+    .quiz-progress-track {
+      height: 3px;
+      background: #ddeaf1;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .quiz-step-label {
+      font-size: 0.77rem;
+      color: var(--text-dark-dim);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* Question screens */
+    .quiz-screen {
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .quiz-question {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 26px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .quiz-multi-hint {
+      font-size: 0.82rem;
+      color: var(--text-dark-dim);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    /* Option cards */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: #fff;
+      border: 1.5px solid var(--card-border-on-white);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+      font-size: 0.97rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      user-select: none;
+      -webkit-user-select: none;
+      text-align: left;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--blue-light);
+      background: var(--blue-pale);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+      box-shadow: 0 0 0 3px rgba(62,157,196,0.14);
+    }
+
+    /* Colored dot (step 1) */
+    .option-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-red    { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green  { background: #22c55e; }
+    .dot-blue-dot { background: #3b82f6; }
+
+    /* Checkbox indicator (steps 2-5) */
+    .option-check {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #c8dfe8;
+      border-radius: 5px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, border-color 0.18s;
+      position: relative;
+    }
+
+    .quiz-option.selected .option-check {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .quiz-option.selected .option-check::after {
+      content: '';
+      width: 5px;
+      height: 9px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translate(-1px, -1px);
+      display: block;
+    }
+
+    /* Continue button (step 4) */
+    .quiz-continue {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 34px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.97rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      letter-spacing: -0.01em;
+    }
+
+    .quiz-continue:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(62,157,196,0.3);
+    }
+
+    /* Email capture */
+    .quiz-email-wrap {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quiz-email-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .quiz-email-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .quiz-email-sub {
+      color: var(--text-dark-muted);
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-input {
+      width: 100%;
+      padding: 15px 18px;
+      border: 1.5px solid #d4eaf3;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .quiz-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(62,157,196,0.12);
+    }
+
+    .quiz-input::placeholder { color: #aabfc9; }
+
+    .quiz-submit {
+      width: 100%;
+      padding: 17px;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: -0.01em;
+    }
+
+    .quiz-submit:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(62,157,196,0.35);
+    }
+
+    .quiz-microcopy {
+      font-size: 0.8rem;
+      color: var(--text-dark-dim);
+      line-height: 1.5;
+    }
+
+    /* =====================
+       RESULT PAGES
+    ===================== */
+    .quiz-result { display: none; }
+    .quiz-result.active { display: block; }
+
+    .result-inner {
+      padding: 80px 0 56px;
+    }
+
+    .result-container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .result-profile-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(62,157,196,0.1);
+      border: 1px solid rgba(62,157,196,0.28);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 0.83rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      margin-bottom: 20px;
+    }
+
+    .result-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .result-tagline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .result-sub {
+      font-size: 1.1rem;
+      color: var(--text-dark-muted);
+      margin-bottom: 40px;
+      line-height: 1.65;
+    }
+
+    .diagnosis-card {
+      background: #0d1f2d;
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.98rem;
+      line-height: 1.82;
+    }
+
+    .warning-block {
+      border: 1.5px solid #f59e0b;
+      background: rgba(245,158,11,0.05);
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin-bottom: 20px;
+      font-size: 0.96rem;
+      color: var(--text-dark);
+      line-height: 1.72;
+    }
+
+    .ilhan-quote-card {
+      background: var(--blue-pale);
+      border: 1px solid var(--card-border-on-white);
+      border-radius: 16px;
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .ilhan-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e5a75 0%, #3e9dc4 100%);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .ilhan-quote-text {
+      font-style: italic;
+      color: var(--text-dark);
+      font-size: 0.98rem;
+      line-height: 1.77;
+      margin-bottom: 10px;
+    }
+
+    .ilhan-quote-attr {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .testimonial-block {
+      background: #fff;
+      border: 1px solid var(--card-border-on-white);
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin-bottom: 36px;
+    }
+
+    .testimonial-block-quote {
+      font-size: 1.4rem;
+      color: var(--blue);
+      font-family: Georgia, serif;
+      opacity: 0.5;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .testimonial-block-text {
+      font-style: italic;
+      color: var(--text-dark);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-block-author {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--blue-dark);
+    }
+
+    .bio-block {
+      background: var(--blue-pale);
+      border: 1px solid var(--card-border-on-white);
+      border-radius: 16px;
+      padding: 32px 36px;
+    }
+
+    .bio-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .bio-text {
+      color: var(--text-dark-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Full-width dark CTA for result pages */
+    .result-cta-section {
+      background: linear-gradient(135deg, #0e2a38 0%, #1e5a75 55%, #2d7a9a 100%);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .result-cta-hl {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -0.025em;
+      position: relative;
+    }
+
+    .result-cta-sub {
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 32px;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .result-cta-micro {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 14px;
+      letter-spacing: 0.04em;
+      position: relative;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-option  { padding: 14px 16px; font-size: 0.93rem; gap: 12px; }
+      .quiz-question { font-size: 1.2rem; margin-bottom: 20px; }
+      .diagnosis-card { padding: 24px 22px; }
+      .bio-block { padding: 24px 22px; }
+      .ilhan-quote-card { flex-direction: column; gap: 14px; }
+      .result-inner { padding: 56px 0 40px; }
+      .result-cta-section { padding: 60px 0; }
+      .included-grid  { grid-template-columns: 1fr 1fr; }
+      .steps-note     { flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -987,13 +1297,10 @@
        1. HERO
   ===================== -->
   <section id="hero">
-    <!-- Photo — right side -->
     <div class="hero-bg">
       <img src="hero.jpg" alt="Stingray.fit — biomehanički trening" class="hero-img" />
     </div>
-    <!-- Gradient blend overlays -->
     <div class="hero-overlay"></div>
-    <!-- Text — left side -->
     <div class="container hero-inner">
       <div class="hero-text">
         <div class="hero-eyebrow fade-up">Biomehanički fitnes coaching</div>
@@ -1001,103 +1308,402 @@
           Tvoja bol nije problem. Način na koji se krećeš jeste.
         </h1>
         <p class="hero-sub fade-up fade-up-delay-2">
-          Prosječna osoba sa hroničnim bolom potroši 3,000+ KM godišnje na terapije koje liječe simptome &mdash; ne uzrok.
+          Otkrij tačno šta se dešava u tvom tijelu &mdash; 5 pitanja, personaliziran profil kretanja, besplatno.
         </p>
         <div class="fade-up fade-up-delay-3">
-          <a href="#final-cta" class="btn btn-primary btn-lg">Saznaj šta zaista uzrokuje tvoj bol &rarr;</a>
-          <span class="microcopy" style="color:rgba(255,255,255,0.45)">Besplatna procjena. 5 minuta.</span>
+          <a href="#quiz" class="btn btn-primary btn-lg">Uradi besplatnu dijagnozu &rarr;</a>
+          <span class="microcopy" style="color:rgba(255,255,255,0.45)">5 pitanja. Besplatno. Bez obaveze.</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =====================
-       2. PROBLEM + CALCULATOR
+       2. QUIZ
   ===================== -->
-  <section id="kalkulator" class="section on-white">
-    <div class="container">
-      <span class="section-label">Troškovi hroničnog bola</span>
-      <h2 class="section-title">Sve si probao. Bol je i dalje tu.</h2>
-      <div class="divider"></div>
-      <p class="section-intro">
-        Fizioterapija. Lijekovi. Odmor. I opet isto. Problem nije što nisi dovoljno probao &mdash; problem je što sve to liječi simptome, ne uzrok.
-      </p>
+  <section id="quiz">
 
-      <div class="calc-wrapper">
-        <!-- Sliders -->
-        <div class="calc-sliders">
-          <div class="slider-group">
-            <div class="slider-label">
-              <span>Koliko godina imaš hronični bol?</span>
-              <span class="slider-value" id="val-years">3 god.</span>
+    <!-- Steps area (hidden when result is shown) -->
+    <div id="quiz-steps-area" class="section on-white">
+      <div class="container">
+        <span class="section-label">Dijagnoza kretanja</span>
+        <h2 class="section-title">Otkrij zašto se tvoje tijelo<br>ne kreće kako treba</h2>
+        <div class="divider"></div>
+        <p class="section-intro">
+          5 pitanja. Personaliziran profil kretanja koji objašnjava tačno šta se dešava u tvom tijelu &mdash; i šta sa tim uraditi.
+        </p>
+
+        <div class="quiz-wrap">
+
+          <!-- Progress bar -->
+          <div class="quiz-progress-area" id="quiz-progress">
+            <div class="quiz-progress-track">
+              <div class="quiz-progress-fill" id="quiz-fill" style="width: 20%"></div>
             </div>
-            <input type="range" id="slider-years" min="1" max="20" value="3" />
+            <p class="quiz-step-label" id="quiz-step-label">Korak 1 od 5</p>
           </div>
 
-          <div class="slider-group">
-            <div class="slider-label">
-              <span>Posjeta fizioterapeutu / ljekaru godišnje</span>
-              <span class="slider-value" id="val-visits">12</span>
+          <!-- STEP 1 -->
+          <div class="quiz-screen" id="qscreen-1">
+            <h2 class="quiz-question">&#352;ta te je dovelo ovdje danas?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(1,'a',this)">
+                <span class="option-dot dot-red"></span>
+                Imam bol koji me spre&#269;ava da se kre&#263;em normalno
+              </div>
+              <div class="quiz-option" onclick="selectOption(1,'b',this)">
+                <span class="option-dot dot-yellow"></span>
+                Osje&#263;am uko&#269;enost i nelagodu &mdash; ne boli jako, ali nije OK
+              </div>
+              <div class="quiz-option" onclick="selectOption(1,'c',this)">
+                <span class="option-dot dot-green"></span>
+                Ho&#263;u da se kre&#263;em bolje i sprije&#269;im budu&#263;e povrede
+              </div>
+              <div class="quiz-option" onclick="selectOption(1,'d',this)">
+                <span class="option-dot dot-blue-dot"></span>
+                Sportista sam i ho&#263;u da izvučem maksimum iz svog tijela
+              </div>
             </div>
-            <input type="range" id="slider-visits" min="0" max="50" value="12" />
           </div>
 
-          <div class="slider-group">
-            <div class="slider-label">
-              <span>Prosječna cijena jednog tretmana (KM)</span>
-              <span class="slider-value" id="val-cost">45 KM</span>
+          <!-- STEP 2 -->
+          <div class="quiz-screen" id="qscreen-2" style="display:none">
+            <h2 class="quiz-question">Gdje osje&#263;a&#353; najve&#263;i problem?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(2,'a',this)">
+                <span class="option-check"></span>
+                Le&#273;a i ki&#269;ma
+              </div>
+              <div class="quiz-option" onclick="selectOption(2,'b',this)">
+                <span class="option-check"></span>
+                Koljena i kukovi
+              </div>
+              <div class="quiz-option" onclick="selectOption(2,'c',this)">
+                <span class="option-check"></span>
+                Ramena i vrat
+              </div>
+              <div class="quiz-option" onclick="selectOption(2,'d',this)">
+                <span class="option-check"></span>
+                Cijelo tijelo &mdash; svugdje pomalo
+              </div>
             </div>
-            <input type="range" id="slider-cost" min="10" max="100" value="45" />
           </div>
 
-          <div class="slider-group">
-            <div class="slider-label">
-              <span>Lijekovi / suplementi mjesečno (KM)</span>
-              <span class="slider-value" id="val-meds">50 KM</span>
+          <!-- STEP 3 -->
+          <div class="quiz-screen" id="qscreen-3" style="display:none">
+            <h2 class="quiz-question">Koliko dugo je ovo prisutno?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(3,'a',this)">
+                <span class="option-check"></span>
+                Po&#269;elo nedavno &mdash; manje od 6 mjeseci
+              </div>
+              <div class="quiz-option" onclick="selectOption(3,'b',this)">
+                <span class="option-check"></span>
+                Ve&#263; 1 do 3 godine
+              </div>
+              <div class="quiz-option" onclick="selectOption(3,'c',this)">
+                <span class="option-check"></span>
+                Vi&#353;e od 3 godine
+              </div>
+              <div class="quiz-option" onclick="selectOption(3,'d',this)">
+                <span class="option-check"></span>
+                Nemam problema &mdash; samo ho&#263;u da budem korak ispred
+              </div>
             </div>
-            <input type="range" id="slider-meds" min="0" max="200" value="50" />
           </div>
 
-          <div class="slider-group">
-            <div class="slider-label">
-              <span>Dana mjesečno — bol utiče na tvoj rad</span>
-              <span class="slider-value" id="val-days">5 dana</span>
+          <!-- STEP 4 (multi-select) -->
+          <div class="quiz-screen" id="qscreen-4" style="display:none">
+            <h2 class="quiz-question">&#352;ta si do sad probao?</h2>
+            <p class="quiz-multi-hint">Mo&#382;e&#353; odabrati vi&#353;e opcija.</p>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="toggleMulti(4,'a',this)">
+                <span class="option-check"></span>
+                Fizioterapiju
+              </div>
+              <div class="quiz-option" onclick="toggleMulti(4,'b',this)">
+                <span class="option-check"></span>
+                Vje&#382;banje u teretani
+              </div>
+              <div class="quiz-option" onclick="toggleMulti(4,'c',this)">
+                <span class="option-check"></span>
+                Odmor i pauzu od aktivnosti
+              </div>
+              <div class="quiz-option" onclick="toggleMulti(4,'d',this)">
+                <span class="option-check"></span>
+                Lijekove ili suplemente
+              </div>
+              <div class="quiz-option" onclick="toggleMulti(4,'e',this)">
+                <span class="option-check"></span>
+                Masa&#382;u ili kiropraktiku
+              </div>
+              <div class="quiz-option" onclick="toggleMulti(4,'f',this)">
+                <span class="option-check"></span>
+                Ni&#353;ta &mdash; ovo je moj prvi korak
+              </div>
             </div>
-            <input type="range" id="slider-days" min="0" max="20" value="5" />
+            <button class="quiz-continue" onclick="advanceToStep(5)">Nastavi &rarr;</button>
           </div>
+
+          <!-- STEP 5 -->
+          <div class="quiz-screen" id="qscreen-5" style="display:none">
+            <h2 class="quiz-question">Koji je tvoj krajnji cilj?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(5,'a',this)">
+                <span class="option-check"></span>
+                Kretati se bez bola &mdash; to je sve &#353;to ho&#263;u
+              </div>
+              <div class="quiz-option" onclick="selectOption(5,'b',this)">
+                <span class="option-check"></span>
+                Biti aktivan bez ograni&#269;enja &mdash; tr&#269;anje, planinarenje, sport
+              </div>
+              <div class="quiz-option" onclick="selectOption(5,'c',this)">
+                <span class="option-check"></span>
+                Poboljšati sportske performanse na sljede&#263;i nivo
+              </div>
+              <div class="quiz-option" onclick="selectOption(5,'d',this)">
+                <span class="option-check"></span>
+                Izgledati i osje&#263;ati se bolje u svom tijelu
+              </div>
+            </div>
+          </div>
+
+          <!-- EMAIL CAPTURE -->
+          <div class="quiz-screen" id="qscreen-email" style="display:none">
+            <div class="quiz-email-wrap">
+              <span class="quiz-email-icon">&#128202;</span>
+              <h2 class="quiz-email-headline">Tvoja analiza je gotova.</h2>
+              <p class="quiz-email-sub">
+                Na osnovu tvojih odgovora, identifikovali smo ta&#269;no &#353;ta se de&#353;ava u tvom tijelu.
+              </p>
+              <form class="quiz-form" onsubmit="submitEmail(event)">
+                <input class="quiz-input" type="text" id="q-name" placeholder="Ime" required autocomplete="given-name" />
+                <input class="quiz-input" type="email" id="q-email" placeholder="Email adresa" required autocomplete="email" />
+                <button class="quiz-submit" type="submit">Prika&#382;i moju analizu &rarr;</button>
+              </form>
+              <p class="quiz-microcopy">
+                Ne&#263;emo slati spam. Samo tvoj rezultat i povremeni savjeti o kretanju.
+              </p>
+            </div>
+          </div>
+
+        </div><!-- /.quiz-wrap -->
+      </div><!-- /.container -->
+    </div><!-- /#quiz-steps-area -->
+
+    <!-- =====================
+         RESULT: RATNIK U OKOVIMA
+    ===================== -->
+    <div class="quiz-result" id="result-ratnik">
+      <div class="result-inner">
+        <div class="result-container">
+
+          <div class="result-profile-badge">Tvoj profil</div>
+          <h1 class="result-name">Ratnik u okovima</h1>
+          <h2 class="result-tagline">Tvoje tijelo &#353;alje SOS signal &mdash; ve&#263; godinama.</h2>
+          <p class="result-sub">Ti nisi osoba koja se predaje. Ali tvoje tijelo pla&#263;a cijenu.</p>
+
+          <div class="diagnosis-card">
+            Tvoji odgovori pokazuju klasi&#269;an obrazac hroni&#269;nog kompenzacijskog obrasca kretanja. Tvoje tijelo, godinama poku&#353;avaju&#263;i izbje&#263;i bol, nau&#269;ilo se kretati na pogre&#353;an na&#269;in. Problem nije bol. Problem je za&#353;to se bol vra&#263;a svaki put kada misli&#353; da si je rije&#353;io.
+          </div>
+
+          <div class="warning-block">
+            &#9888;&#65039; Bez korekcije obrasca kretanja, bol postaje hroni&#269;na &mdash; i sve te&#382;e rje&#353;iva. Tijelo koje kompenzuje 3, 5, 10 godina razvija sekundarne probleme koji su skuplji i dugotrajniji za lije&#269;enje.
+          </div>
+
+          <div class="ilhan-quote-card">
+            <div class="ilhan-avatar">I</div>
+            <div>
+              <p class="ilhan-quote-text">&ldquo;Vidio sam stotine klijenata koji su godinama tro&#353;ili novac na fizioterapiju, lijekove i pauze &mdash; i bol bi se vratio. Razlog je uvijek isti: lije&#269;ili su gdje boli, ne za&#353;to boli. Biomehanika mijenja tu jedna&#382;bu.&rdquo;</p>
+              <p class="ilhan-quote-attr">&mdash; Ilhan, Stingray</p>
+            </div>
+          </div>
+
+          <div class="testimonial-block">
+            <span class="testimonial-block-quote">&ldquo;</span>
+            <p class="testimonial-block-text">Za 2 mjeseca &mdash; DUGOGODI&#352;NJIH bolova u koljenu i le&#273;ima NEMA. Niko nije vjerovao, ni ja sam. Ali metoda radi.</p>
+            <p class="testimonial-block-author">&mdash; Nedim</p>
+          </div>
+
+          <div class="bio-block">
+            <div class="bio-title">Ko je Ilhan?</div>
+            <p class="bio-text">Ilhan je jedan od rijetkih trenera na Balkanu koji pristupa tijelu kao sistemu. Sa 64,000+ pratilaca i godinama rada s klijentima koji su pro&#353;li kroz fizioterapiju, operacije i bezbroj programa bez trajnog rezultata &mdash; izgradio je metodologiju zasnovanu na jednom principu: tijelo koje se pravilno kre&#263;e ne boli. Nije fitnes trener. Nije fizioterapeut. Ilhan je specijalista biomehanike kretanja &mdash; i to je razlika koja mijenja sve.</p>
+          </div>
+
+        </div><!-- /.result-container -->
+      </div><!-- /.result-inner -->
+
+      <div class="result-cta-section">
+        <div class="container">
+          <h2 class="result-cta-hl">Sljede&#263;i korak: Besplatna procjena kretanja</h2>
+          <p class="result-cta-sub">15 minuta. Video poziv. Bez obaveze.</p>
+          <a href="https://cal.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Zakaži besplatnu procjenu &rarr;</a>
+          <p class="result-cta-micro">Besplatno &bull; Online &bull; 15 minuta</p>
         </div>
+      </div>
+    </div><!-- /#result-ratnik -->
 
-        <!-- Results -->
-        <div class="calc-results">
-          <div class="result-card">
-            <div class="result-label">Potrošeno do sad</div>
-            <div class="result-number" id="res-total">0 KM</div>
+    <!-- =====================
+         RESULT: TIHI SABOTATOR
+    ===================== -->
+    <div class="quiz-result" id="result-sabotator">
+      <div class="result-inner">
+        <div class="result-container">
+
+          <div class="result-profile-badge">Tvoj profil</div>
+          <h1 class="result-name">Tihi sabotator</h1>
+          <h2 class="result-tagline">Tvoje tijelo radi &mdash; ali ne i kako bi trebalo.</h2>
+          <p class="result-sub">Nema jake boli. Ali ne&#353;to nije u redu &mdash; i ti to osje&#263;a&#353;.</p>
+
+          <div class="diagnosis-card">
+            Tvoji odgovori ukazuju na subklini&#269;ki disfunkcijski obrazac kretanja. Odre&#273;eni mi&#353;i&#263;i rade previše. Drugi su potpuno isklju&#269;eni. Rezultat &mdash; uko&#269;enost, zamor, ograni&#269;en raspon pokreta. Ovo je stadij koji ve&#263;ina ljudi ignori&#353;e &mdash; i upravo tu nastaje hroni&#269;ni bol.
           </div>
-          <div class="result-card">
-            <div class="result-label">Godišnji trošak bola</div>
-            <div class="result-number" id="res-annual">0 KM</div>
+
+          <div class="warning-block">
+            &#9888;&#65039; Subklini&#269;ka disfunkcija kretanja koja se ne adresira postaje hroni&#269;na za 2&ndash;5 godina u 73% slu&#269;ajeva. Prevencija je uvijek jeftinija od lije&#269;enja.
           </div>
-          <div class="result-card highlight">
-            <div class="result-label">Za 5 godina, ako nastaviš ovako</div>
-            <div class="result-number big" id="res-five">0 KM</div>
+
+          <div class="ilhan-quote-card">
+            <div class="ilhan-avatar">I</div>
+            <div>
+              <p class="ilhan-quote-text">&ldquo;Najsretniji sam kada vidim klijente koji do&#273;u u ovoj fazi. Jo&#353; nema velike boli. Jo&#353; je sve rje&#353;ivo relativno brzo. Ti si napravio pravu odluku dolaze&#263;i sada.&rdquo;</p>
+              <p class="ilhan-quote-attr">&mdash; Ilhan, Stingray</p>
+            </div>
           </div>
+
+          <div class="testimonial-block">
+            <span class="testimonial-block-quote">&ldquo;</span>
+            <p class="testimonial-block-text">Nakon 7 dana bolovi u vratu i ramenima su nestali.</p>
+            <p class="testimonial-block-author">&mdash; Stefani</p>
+          </div>
+
+          <div class="bio-block">
+            <div class="bio-title">Ko je Ilhan?</div>
+            <p class="bio-text">Ilhan je jedan od rijetkih trenera na Balkanu koji pristupa tijelu kao sistemu. Sa 64,000+ pratilaca i godinama rada s klijentima koji su pro&#353;li kroz fizioterapiju, operacije i bezbroj programa bez trajnog rezultata &mdash; izgradio je metodologiju zasnovanu na jednom principu: tijelo koje se pravilno kre&#263;e ne boli. Nije fitnes trener. Nije fizioterapeut. Ilhan je specijalista biomehanike kretanja &mdash; i to je razlika koja mijenja sve.</p>
+          </div>
+
         </div>
       </div>
 
-      <p class="calc-tagline"><strong>I nakon svega toga &mdash; bol je i dalje tu.</strong></p>
-      <div class="calc-cta">
-        <a href="#final-cta" class="btn btn-blue">Zakaži besplatnu procjenu &rarr;</a>
+      <div class="result-cta-section">
+        <div class="container">
+          <h2 class="result-cta-hl">Sljede&#263;i korak: Besplatna procjena kretanja</h2>
+          <p class="result-cta-sub">15 minuta. Video poziv. Bez obaveze.</p>
+          <a href="https://cal.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Zakaži besplatnu procjenu &rarr;</a>
+          <p class="result-cta-micro">Besplatno &bull; Online &bull; 15 minuta</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </div><!-- /#result-sabotator -->
+
+    <!-- =====================
+         RESULT: PERFORMER
+    ===================== -->
+    <div class="quiz-result" id="result-performer">
+      <div class="result-inner">
+        <div class="result-container">
+
+          <div class="result-profile-badge">Tvoj profil</div>
+          <h1 class="result-name">Performer</h1>
+          <h2 class="result-tagline">Tvoje tijelo ima vi&#353;e u sebi &mdash; ali ne&#353;to blokira puni potencijal.</h2>
+          <p class="result-sub">Trenira&#353;. Trudi&#353; se. Ali negdje izme&#273;u napora i rezultata &mdash; ne&#353;to se gubi.</p>
+
+          <div class="diagnosis-card">
+            Tvoji odgovori ukazuju na biomehaničke blokade performanse. Tijelo koje se kre&#263;e neefikasno tro&#353;i energiju na kompenzaciju umjesto na performansu. Svaki trening radite s rukom vezanom iza le&#273;a.
+          </div>
+
+          <div class="warning-block">
+            &#9888;&#65039; Biomehaničke neravnote&#382;e kod sportista vode ka povredama &mdash; ne odmah, ali neizbje&#382;no. 80% sportskih povreda nije uzrokovano jednim incidentom, ve&#263; akumuliranim stresom pogre&#353;nih obrazaca.
+          </div>
+
+          <div class="ilhan-quote-card">
+            <div class="ilhan-avatar">I</div>
+            <div>
+              <p class="ilhan-quote-text">&ldquo;Svim klijentima, bez izuzetka, nalazim iste stvari: postoje pokreti koje njihovo tijelo ne zna napraviti korektno &mdash; i to ih ko&#353;ta performanse. Kad to ispravimo, napredak je brz i mjerljiv.&rdquo;</p>
+              <p class="ilhan-quote-attr">&mdash; Ilhan, Stingray</p>
+            </div>
+          </div>
+
+          <div class="testimonial-block">
+            <span class="testimonial-block-quote">&ldquo;</span>
+            <p class="testimonial-block-text">Po&#269;eo sam sa Stingrayom zbog performansi, ne bola. Za 3 mjeseca poboljšao sam sve metrike &mdash; snagu, brzinu, oporavak.</p>
+            <p class="testimonial-block-author">&mdash; Tarik</p>
+          </div>
+
+          <div class="bio-block">
+            <div class="bio-title">Ko je Ilhan?</div>
+            <p class="bio-text">Ilhan je jedan od rijetkih trenera na Balkanu koji pristupa tijelu kao sistemu. Sa 64,000+ pratilaca i godinama rada s klijentima koji su pro&#353;li kroz fizioterapiju, operacije i bezbroj programa bez trajnog rezultata &mdash; izgradio je metodologiju zasnovanu na jednom principu: tijelo koje se pravilno kre&#263;e ne boli. Nije fitnes trener. Nije fizioterapeut. Ilhan je specijalista biomehanike kretanja &mdash; i to je razlika koja mijenja sve.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="result-cta-section">
+        <div class="container">
+          <h2 class="result-cta-hl">Sljede&#263;i korak: Besplatna procjena kretanja</h2>
+          <p class="result-cta-sub">15 minuta. Video poziv. Bez obaveze.</p>
+          <a href="https://cal.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Zakaži besplatnu procjenu &rarr;</a>
+          <p class="result-cta-micro">Besplatno &bull; Online &bull; 15 minuta</p>
+        </div>
+      </div>
+    </div><!-- /#result-performer -->
+
+    <!-- =====================
+         RESULT: VIZIONAR
+    ===================== -->
+    <div class="quiz-result" id="result-vizionar">
+      <div class="result-inner">
+        <div class="result-container">
+
+          <div class="result-profile-badge">Tvoj profil</div>
+          <h1 class="result-name">Vizionar</h1>
+          <h2 class="result-tagline">Ti si jedan korak ispred. Ostani tu.</h2>
+          <p class="result-sub">Nema boli. Nema problema. Ali zna&#353; da prevencija vrijedi vi&#353;e od lije&#269;enja.</p>
+
+          <div class="diagnosis-card">
+            Rijetko sretnemo nekoga na ovom stepenu svjesnosti. Biomehanička procjena u ovoj fazi otkriva latentne obrasce koji, bez intervencije, postaju problemi za 5&ndash;10 godina. Znanje o tome kako se tvoje tijelo kre&#263;e danas je najmo&#263;nija prevencija koja postoji.
+          </div>
+
+          <div class="ilhan-quote-card">
+            <div class="ilhan-avatar">I</div>
+            <div>
+              <p class="ilhan-quote-text">&ldquo;Ovo je pristup koji bih volio da svi imaju. Ne &#269;ekati da ne&#353;to zaboli. Razumjeti kako tvoje tijelo funkcioniše sada &mdash; i osigurati da nastavi funkcionisati onako kako treba.&rdquo;</p>
+              <p class="ilhan-quote-attr">&mdash; Ilhan, Stingray</p>
+            </div>
+          </div>
+
+          <div class="testimonial-block">
+            <span class="testimonial-block-quote">&ldquo;</span>
+            <p class="testimonial-block-text">Po&#269;eo depresivan od bolova. Sada bez ikakvih bolova.</p>
+            <p class="testimonial-block-author">&mdash; Halid</p>
+          </div>
+
+          <div class="bio-block">
+            <div class="bio-title">Ko je Ilhan?</div>
+            <p class="bio-text">Ilhan je jedan od rijetkih trenera na Balkanu koji pristupa tijelu kao sistemu. Sa 64,000+ pratilaca i godinama rada s klijentima koji su pro&#353;li kroz fizioterapiju, operacije i bezbroj programa bez trajnog rezultata &mdash; izgradio je metodologiju zasnovanu na jednom principu: tijelo koje se pravilno kre&#263;e ne boli. Nije fitnes trener. Nije fizioterapeut. Ilhan je specijalista biomehanike kretanja &mdash; i to je razlika koja mijenja sve.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="result-cta-section">
+        <div class="container">
+          <h2 class="result-cta-hl">Sljede&#263;i korak: Besplatna procjena kretanja</h2>
+          <p class="result-cta-sub">15 minuta. Video poziv. Bez obaveze.</p>
+          <a href="https://cal.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Zakaži besplatnu procjenu &rarr;</a>
+          <p class="result-cta-micro">Besplatno &bull; Online &bull; 15 minuta</p>
+        </div>
+      </div>
+    </div><!-- /#result-vizionar -->
+
+  </section><!-- /#quiz -->
 
   <!-- =====================
        3. THE SHIFT
   ===================== -->
   <section id="shift" class="section on-blue">
     <div class="container">
-      <span class="section-label">Drugačiji pristup</span>
-      <h2 class="section-title">Problem nije bol.<br>Problem je kako se krećeš.</h2>
+      <span class="section-label">Druga&#269;iji pristup</span>
+      <h2 class="section-title">Problem nije bol.<br>Problem je kako se kre&#263;e&#353;.</h2>
       <div class="divider"></div>
 
       <div class="comparison-table">
@@ -1107,18 +1713,18 @@
         <div class="comparison-row">
           <div class="cell traditional">
             <span class="cell-icon x">&times;</span>
-            Liječi gdje boli
+            Lije&#269;i gdje boli
           </div>
           <div class="cell stingray">
             <span class="cell-icon check">&#10003;</span>
-            Otkriva zašto boli
+            Otkriva za&#353;to boli
           </div>
         </div>
 
         <div class="comparison-row">
           <div class="cell traditional">
             <span class="cell-icon x">&times;</span>
-            Privremeno olakšanje
+            Privremeno olak&#353;anje
           </div>
           <div class="cell stingray">
             <span class="cell-icon check">&#10003;</span>
@@ -1129,11 +1735,11 @@
         <div class="comparison-row">
           <div class="cell traditional">
             <span class="cell-icon x">&times;</span>
-            Simptomi se vraćaju
+            Simptomi se vra&#263;aju
           </div>
           <div class="cell stingray">
             <span class="cell-icon check">&#10003;</span>
-            Korijeni se rješavaju
+            Korijeni se rje&#353;avaju
           </div>
         </div>
 
@@ -1163,10 +1769,10 @@
       <div class="testimonials-grid">
         <div class="testimonial-card">
           <span class="quote-mark">&ldquo;</span>
-          <p class="testimonial-text">Za 2 mjeseca &mdash; DUGOGODIŠNJIH bolova u koljenu i leđima NEMA.</p>
+          <p class="testimonial-text">Za 2 mjeseca &mdash; DUGOGODI&#352;NJIH bolova u koljenu i le&#273;ima NEMA.</p>
           <div class="testimonial-author">Nedim</div>
           <div style="margin-top:10px">
-            <span class="testimonial-result">&#10003; Višegodišnji bol riješen za 2 mjeseca</span>
+            <span class="testimonial-result">&#10003; Vi&#353;egodi&#353;nji bol rije&#353;en za 2 mjeseca</span>
           </div>
         </div>
 
@@ -1181,7 +1787,7 @@
 
         <div class="testimonial-card">
           <span class="quote-mark">&ldquo;</span>
-          <p class="testimonial-text">Počeo depresivan od bolova. Sada bez ikakvih bolova.</p>
+          <p class="testimonial-text">Po&#269;eo depresivan od bolova. Sada bez ikakvih bolova.</p>
           <div class="testimonial-author">Halid</div>
           <div style="margin-top:10px">
             <span class="testimonial-result">&#10003; Potpuni oporavak</span>
@@ -1197,14 +1803,14 @@
   <section id="kako-radi" class="section on-blue">
     <div class="container">
       <span class="section-label">Proces</span>
-      <h2 class="section-title">Kako počinje promjena</h2>
+      <h2 class="section-title">Kako po&#269;inje promjena</h2>
       <div class="divider"></div>
 
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-number">01</div>
           <div class="step-title">Popuni upitnik i snimi testove</div>
-          <p class="step-desc">Analiziramo tvoju posturu i biomehaniku. Otkrivamo tačan uzrok bola &mdash; ne samo gdje boli, nego zašto.</p>
+          <p class="step-desc">Analiziramo tvoju posturu i biomehaniku. Otkrivamo ta&#269;an uzrok bola &mdash; ne samo gdje boli, nego za&#353;to.</p>
         </div>
 
         <div class="step-card">
@@ -1216,13 +1822,13 @@
         <div class="step-card">
           <div class="step-number">03</div>
           <div class="step-title">Pratiš napredak sa nama</div>
-          <p class="step-desc">Mjesečni pozivi i testovi, mjerljivi rezultati. Vidiš promjenu &mdash; brojevima, ne nadom.</p>
+          <p class="step-desc">Mjese&#269;ni pozivi i testovi, mjerljivi rezultati. Vidiš promjenu &mdash; brojevima, ne nadom.</p>
         </div>
       </div>
 
       <div class="steps-note">
         <span class="steps-note-icon">&#127759;</span>
-        <p>Teretana nije nužna. Lokacija nije bitna. <strong style="color:#fff">Radiš gdje god si.</strong></p>
+        <p>Teretana nije nu&#382;na. Lokacija nije bitna. <strong style="color:#fff">Radi&#353; gdje god si.</strong></p>
       </div>
 
       <div class="how-cta">
@@ -1237,7 +1843,7 @@
   <section id="sta-dobijas" class="section on-white">
     <div class="container">
       <span class="section-label">Paket</span>
-      <h2 class="section-title">Šta dobijaš</h2>
+      <h2 class="section-title">&#352;ta dobija&#353;</h2>
       <div class="divider"></div>
 
       <div class="included-grid">
@@ -1247,11 +1853,11 @@
         </div>
         <div class="included-card">
           <span class="included-icon">&#127910;</span>
-          <div class="included-title">4K video vodiči za svaku vježbu</div>
+          <div class="included-title">4K video vodiči za svaku vje&#382;bu</div>
         </div>
         <div class="included-card">
           <span class="included-icon">&#128197;</span>
-          <div class="included-title">Sedmični plan i praćenje</div>
+          <div class="included-title">Sedmični plan i pra&#263;enje</div>
         </div>
         <div class="included-card">
           <span class="included-icon">&#128172;</span>
@@ -1280,37 +1886,37 @@
             <span class="faq-icon">&#8250;</span>
           </button>
           <div class="faq-answer">
-            <p class="faq-answer-inner">Ne. Program je dizajniran da radiš kod kuće, u parku, na putovanju &mdash; bilo gdje. Sve što ti treba je tvoje tijelo i volja za promjenom.</p>
+            <p class="faq-answer-inner">Ne. Program je dizajniran da radi&#353; kod ku&#263;e, u parku, na putovanju &mdash; bilo gdje. Sve &#353;to ti treba je tvoje tijelo i volja za promjenom.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            Koliko brzo mogu očekivati rezultate?
+            Koliko brzo mogu o&#269;ekivati rezultate?
             <span class="faq-icon">&#8250;</span>
           </button>
           <div class="faq-answer">
-            <p class="faq-answer-inner">Većina klijenata osjeća značajno poboljšanje u prvih 30 dana. Neki, poput Stefanija, osjete razliku za samo 7 dana.</p>
+            <p class="faq-answer-inner">Ve&#263;ina klijenata osje&#263;a zna&#269;ajno poboljšanje u prvih 30 dana. Neki, poput Stefanija, osjete razliku za samo 7 dana.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            Šta ako imam ozbiljnu povredu?
+            &#352;ta ako imam ozbiljnu povredu?
             <span class="faq-icon">&#8250;</span>
           </button>
           <div class="faq-answer">
-            <p class="faq-answer-inner">Upravo za takve slučajeve je Stingray stvoren. Prilagođavamo program tvom stanju, pažljivo i postepeno, sa fokusom na siguran oporavak.</p>
+            <p class="faq-answer-inner">Upravo za takve slu&#269;ajeve je Stingray stvoren. Prilagođavamo program tvom stanju, pa&#382;ljivo i postepeno, sa fokusom na siguran oporavak.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            Koliko košta program?
+            Koliko ko&#353;ta program?
             <span class="faq-icon">&#8250;</span>
           </button>
           <div class="faq-answer">
-            <p class="faq-answer-inner">Kada uporediš sa godišnjim troškom fizioterapije i lijekova &mdash; ovo je investicija koja se isplati. Zakaži procjenu i dobit ćeš sve detalje o opcijama i cijenama.</p>
+            <p class="faq-answer-inner">Kada uporedi&#353; sa godi&#353;njim tro&#353;kom fizioterapije i lijekova &mdash; ovo je investicija koja se isplati. Zakaži procjenu i dobit &#263;e&#353; sve detalje o opcijama i cijenama.</p>
           </div>
         </div>
       </div>
@@ -1322,9 +1928,9 @@
   ===================== -->
   <section id="final-cta">
     <div class="container">
-      <h2 class="final-headline">Koliko još godina planiraš živjeti sa bolom?</h2>
+      <h2 class="final-headline">Koliko jo&#353; godina planira&#353; &#382;ivjeti sa bolom?</h2>
       <p class="final-sub">Jedan poziv. 15 minuta. Bez obaveze.</p>
-      <a href="#" class="btn btn-primary btn-lg">Zakaži besplatnu procjenu &rarr;</a>
+      <a href="https://cal.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Zakaži besplatnu procjenu &rarr;</a>
       <p class="final-micro">Besplatno &bull; Online &bull; 15 minuta</p>
     </div>
   </section>
@@ -1352,109 +1958,118 @@
        JAVASCRIPT
   ===================== -->
   <script>
-    // ---- CALCULATOR ----
-    const sliders = {
-      years:  document.getElementById('slider-years'),
-      visits: document.getElementById('slider-visits'),
-      cost:   document.getElementById('slider-cost'),
-      meds:   document.getElementById('slider-meds'),
-      days:   document.getElementById('slider-days'),
-    };
+    // ---- QUIZ STATE ----
+    const answers = {};
 
-    const displays = {
-      years:  document.getElementById('val-years'),
-      visits: document.getElementById('val-visits'),
-      cost:   document.getElementById('val-cost'),
-      meds:   document.getElementById('val-meds'),
-      days:   document.getElementById('val-days'),
-    };
-
-    const results = {
-      total:  document.getElementById('res-total'),
-      annual: document.getElementById('res-annual'),
-      five:   document.getElementById('res-five'),
-    };
-
-    function fmt(n) {
-      return n.toLocaleString('bs-BA') + ' KM';
+    // ---- HELPERS ----
+    function scrollToQuiz() {
+      const el = document.getElementById('quiz');
+      const y = el.getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
 
-    function calcUpdate() {
-      const years  = +sliders.years.value;
-      const visits = +sliders.visits.value;
-      const cost   = +sliders.cost.value;
-      const meds   = +sliders.meds.value;
-      const days   = +sliders.days.value;
-
-      displays.years.textContent  = years + ' god.';
-      displays.visits.textContent = visits;
-      displays.cost.textContent   = cost + ' KM';
-      displays.meds.textContent   = meds + ' KM';
-      displays.days.textContent   = days + ' dana';
-
-      // annual treatment cost + annual meds
-      const annualTreatment = (visits * cost) + (meds * 12);
-      // productivity cost: days * 50 KM per day
-      const annualTotal = annualTreatment + (days * 50);
-      // total spent so far
-      const totalSpent = years * annualTreatment;
-
-      // Animated counter update
-      animateValue(results.total,  totalSpent);
-      animateValue(results.annual, annualTotal);
-      animateValue(results.five,   annualTotal * 5);
+    function showScreen(id) {
+      document.querySelectorAll('.quiz-screen').forEach(function(s) {
+        s.style.display = 'none';
+      });
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.display = 'block';
+        el.style.animation = 'none';
+        // Force reflow
+        void el.offsetWidth;
+        el.style.animation = '';
+      }
     }
 
-    function animateValue(el, target) {
-      const current = parseInt(el.dataset.current || '0', 10);
-      if (current === target) return;
-      el.dataset.current = target;
+    function updateProgress(step) {
+      var pct = step * 20;
+      document.getElementById('quiz-fill').style.width = pct + '%';
+      document.getElementById('quiz-step-label').textContent = 'Korak ' + step + ' od 5';
+    }
 
-      const duration = 400;
-      const start = performance.now();
-      const from = current;
+    // ---- SINGLE SELECT ----
+    function selectOption(step, value, el) {
+      // Deselect siblings
+      el.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(function(o) {
+        o.classList.remove('selected');
+      });
+      el.classList.add('selected');
+      answers[step] = value;
 
-      function step(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(from + (target - from) * eased);
-        el.textContent = fmt(value);
-        if (progress < 1) requestAnimationFrame(step);
+      // Auto-advance after short delay
+      setTimeout(function() {
+        if (step < 5) {
+          advanceToStep(step + 1);
+        } else {
+          showEmailCapture();
+        }
+      }, 360);
+    }
+
+    // ---- MULTI SELECT (step 4) ----
+    function toggleMulti(step, value, el) {
+      if (!Array.isArray(answers[step])) answers[step] = [];
+      el.classList.toggle('selected');
+      if (el.classList.contains('selected')) {
+        if (answers[step].indexOf(value) === -1) answers[step].push(value);
+      } else {
+        answers[step] = answers[step].filter(function(v) { return v !== value; });
+      }
+    }
+
+    // ---- ADVANCE STEP ----
+    function advanceToStep(step) {
+      showScreen('qscreen-' + step);
+      updateProgress(step);
+    }
+
+    // ---- EMAIL CAPTURE ----
+    function showEmailCapture() {
+      showScreen('qscreen-email');
+      document.getElementById('quiz-progress').style.display = 'none';
+    }
+
+    // ---- PROFILE LOGIC ----
+    function determineProfile() {
+      var s1 = answers[1];
+      var s3 = answers[3];
+      var s5 = answers[5];
+
+      if (s1 === 'a') return 'ratnik';
+      if ((s1 === 'c' || s1 === 'd') && s3 === 'd') return 'vizionar';
+      if (s1 === 'd' && s5 === 'c') return 'performer';
+      if (s1 === 'b' || s1 === 'c') return 'sabotator';
+      // fallback (step1=d, no special condition)
+      return 'sabotator';
+    }
+
+    // ---- EMAIL SUBMIT ----
+    function submitEmail(e) {
+      e.preventDefault();
+
+      var profile = determineProfile();
+
+      // Hide quiz steps area
+      document.getElementById('quiz-steps-area').style.display = 'none';
+
+      // Show matching result
+      var resultEl = document.getElementById('result-' + profile);
+      if (resultEl) {
+        resultEl.classList.add('active');
       }
 
-      requestAnimationFrame(step);
+      // Scroll to top of quiz section
+      scrollToQuiz();
     }
-
-    Object.values(sliders).forEach(s => {
-      s.addEventListener('input', calcUpdate);
-    });
-
-    // Track range fill color
-    function updateSliderFill(slider) {
-      const min = +slider.min;
-      const max = +slider.max;
-      const val = +slider.value;
-      const pct = ((val - min) / (max - min)) * 100;
-      slider.style.background = `linear-gradient(to right, #3e9dc4 ${pct}%, #c8dfe8 ${pct}%)`;
-    }
-
-    Object.values(sliders).forEach(s => {
-      updateSliderFill(s);
-      s.addEventListener('input', () => updateSliderFill(s));
-    });
-
-    calcUpdate();
 
     // ---- FAQ ACCORDION ----
     function toggleFaq(btn) {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-
-      // Open clicked if it was closed
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i) {
+        i.classList.remove('open');
+      });
       if (!isOpen) item.classList.add('open');
     }
   </script>
